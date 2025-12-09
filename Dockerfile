@@ -1,11 +1,11 @@
 # Step 1: Build stage
-FROM maven:3.9.6-eclipse-temurin-17 AS build
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 COPY . .
-RUN mvn -q clean package -DskipTests
+RUN ./mvnw -q clean package -DskipTests || mvn -q clean package -DskipTests
 
 # Step 2: Run stage
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
