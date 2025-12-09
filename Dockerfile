@@ -1,12 +1,20 @@
 # Step 1: Build stage
 FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
+
 COPY . .
-RUN ./mvnw -q clean package -DskipTests || mvn -q clean package -DskipTests
+
+# Give execute permission to mvnw
+RUN chmod +x mvnw
+
+# Build project
+RUN ./mvnw -q clean package -DskipTests
 
 # Step 2: Run stage
 FROM eclipse-temurin:21-jre
 WORKDIR /app
+
 COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
