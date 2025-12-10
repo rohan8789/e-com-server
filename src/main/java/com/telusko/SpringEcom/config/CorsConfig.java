@@ -12,7 +12,7 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.allowedOrigin(
+        config.allowedOrigins(
             "https://sensational-zabaione-e71ce8.netlify.app",
             "http://localhost:5173"
         ); // your frontend origin
