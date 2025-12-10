@@ -12,7 +12,10 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("https://sensational-zabaione-e71ce8.netlify.app"); // your frontend origin
+        config.addAllowedOrigin(
+            "https://sensational-zabaione-e71ce8.netlify.app",
+            "http://localhost:5173"
+        ); // your frontend origin
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.addExposedHeader("Authorization"); // expose this header to frontend
