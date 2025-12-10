@@ -12,7 +12,7 @@ public class GoogleController {
         System.out.println("HelloWorld");
         return "HelloWorld";
     }
-    @PostMapping("/auth/google")
+    @PostMapping("/google")
     String sayAbout(@RequestBody String token){
         System.out.println(token );
 
