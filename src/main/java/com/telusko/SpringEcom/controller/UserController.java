@@ -13,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin(origins = {
+    "https://sensational-zabaione-e71ce8.netlify.app"
+    "http://localhost:5173",
+})
 @RequestMapping("/api")
 
 public class UserController {
