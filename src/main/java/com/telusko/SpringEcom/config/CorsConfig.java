@@ -6,23 +6,28 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
+
 @Configuration
 public class CorsConfig {
 
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.allowedOrigins(
-            "https://sensational-zabaione-e71ce8.netlify.app",
-            "http://localhost:5173"
-        ); // your frontend origin
+
+        config.setAllowedOrigins(Arrays.asList(
+                "https://sensational-zabaione-e71ce8.netlify.app",
+                "http://localhost:5173"
+        ));
+
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.addExposedHeader("Authorization"); // expose this header to frontend
+        config.addExposedHeader("Authorization");
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
+
         return new CorsFilter(source);
     }
 }
